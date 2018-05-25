@@ -69,7 +69,20 @@ async function parseCommand(text, msg, isTelegram = true) {
       sendPlatformsCalls(user, platform, msg, isTelegram);
     else
       sendGlobalCalls(user, msg, isTelegram);
-  } else if (text.match(/^\/(pc|xbox|ps4)(.+)?$/i)) {
+  }	else if (text.match(/^\/(shop|kauppa)(.+)?$/i)) {
+		  var options = {
+			host: 'www.google.com',
+	  port: 80,
+	  path: '/index.html'
+	};
+
+	http.get(options, function(res) {
+	  console.log("Got response: " + res.statusCode);
+	}).on('error', function(e) {
+	  console.log("Got error: " + e.message);
+	});
+	sendMessage("HIIHOO", constants.START_MSG, isTelegram);
+	} else if (text.match(/^\/(pc|xbox|ps4)(.+)?$/i)) {
     // Get global stats on a user specifying platform
 
     // Get username, exit if not found
